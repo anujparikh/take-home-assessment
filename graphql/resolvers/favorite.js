@@ -1,16 +1,16 @@
-const favoriteById = async (parent, { mlsId }, context, info) => {
+const favoriteById = async (_, { mlsId }, context) => {
   const { FavoriteModel } = context;
   const result = await FavoriteModel.getByMlsId(mlsId);
   return result;
 };
 
-const markFavoriteById = async (parent, { mlsId }, context, info) => {
+const markFavoriteById = async (_, { mlsId }, context) => {
   const { FavoriteModel } = context;
   const result = await FavoriteModel.addFavoriteByMlsId(mlsId);
   return result;
 };
 
-const unmarkFavoriteById = async (parent, { mlsId }, context, info) => {
+const unmarkFavoriteById = async (_, { mlsId }, context) => {
   const { FavoriteModel } = context;
   const result = await FavoriteModel.removeFavoriteByMlsId(mlsId);
   return result;

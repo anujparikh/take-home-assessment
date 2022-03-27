@@ -6,16 +6,21 @@ const mongoose = require("mongoose");
 const config = require("./config");
 const favoriteTypeDefs = require("./graphql/type-definitions/favorite");
 const favoriteResolvers = require("./graphql/resolvers/favorite");
+const listingTypeDefs = require("./graphql/type-definitions/listing");
+const listingResolvers = require("./graphql/resolvers/listing");
 const FavoriteModel = require("./models/favorite");
 const UserModel = require("./models/user");
-console.log(config.dbConfig.url);
+const SimplyRetsAPI = require("./datasource/simply-rets");
 
 const models = join(__dirname, "./models");
 
 const createServer = () => {
   const server = new ApolloServer({
-    typeDefs: [favoriteTypeDefs],
-    resolvers: [favoriteResolvers],
+    typeDefs: [favoriteTypeDefs, listingTypeDefs],
+    resolvers: [favoriteResolvers, listingResolvers],
+    dataSources: () => ({
+      simplyRetsAPI: new SimplyRetsAPI(),
+    }),
     context: () => ({
       FavoriteModel,
       UserModel,
