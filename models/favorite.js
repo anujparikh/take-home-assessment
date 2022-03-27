@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 const Favorite = require("../service/favorite");
 
 const Schema = mongoose.Schema;
@@ -31,10 +31,12 @@ FavoriteSchema.methods = {
 };
 
 FavoriteSchema.statics = {
-  getByMlsId: function (mlsId) {
+  getByMlsId: async function (mlsId) {
     const favorite = new Favorite(this);
-    favorite.findOneByMlsId(mlsId);
+    return favorite.findOneByMlsId(mlsId);
   },
 };
 
-mongoose.model("Favorite", FavoriteSchema);
+const FavoriteModel = mongoose.model("Favorite", FavoriteSchema);
+
+module.exports = FavoriteModel;
