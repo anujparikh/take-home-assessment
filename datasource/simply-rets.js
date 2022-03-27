@@ -9,7 +9,7 @@ class SimplyRetsAPI extends RESTDataSource {
   }
 
   async findListings(cityFilter) {
-    const filters = [cityFilter]
+    const filters = (cityFilter ? [cityFilter] : [])
       .map((filter) => `q=${filter}`)
       .reduce((prev, curr) => `${prev}&${curr}`, "");
     return await this.get(

@@ -14,6 +14,15 @@ FavoriteSchema.methods = {};
 
 FavoriteSchema.statics = {
   /**
+   * Fetching all the favorite counts for provided mlsIds
+   * @param {Array<Number>} mlsIds
+   * @returns
+   */
+  findAllByMlsIds: async function (mlsIds) {
+    const favorite = new Favorite(this);
+    return favorite.findAllByMlsIds(mlsIds);
+  },
+  /**
    * Get Favorite entity by mls id
    * @param {Number} mlsId
    * @returns

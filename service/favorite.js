@@ -40,6 +40,15 @@ class Favorite {
   findOneByMlsId(mlsId) {
     return this.model.findOne({ mlsId }).exec();
   }
+
+  /**
+   * Fetch Favorite Count information by mls ids
+   * @param {Number} mlsId
+   * @returns
+   */
+  findAllByMlsIds(mlsIds) {
+    return this.model.find({ mlsId: { $in: mlsIds } }).exec();
+  }
 }
 
 module.exports = Favorite;
