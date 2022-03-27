@@ -11,7 +11,7 @@ class Favorite {
     const update = {
       $inc: { counter: 1 },
     };
-    this.model.findOneAndUpdate(filter, update, {
+    return this.model.findOneAndUpdate(filter, update, {
       new: true,
       upsert: true,
     });
@@ -26,12 +26,17 @@ class Favorite {
     const update = {
       $inc: { counter: -1 },
     };
-    this.model.findOneAndUpdate(filter, update, {
+    return this.model.findOneAndUpdate(filter, update, {
       new: true,
       upsert: true,
     });
   }
 
+  /**
+   * Fetch Favorite information by mls id
+   * @param {Number} mlsId
+   * @returns
+   */
   findOneByMlsId(mlsId) {
     return this.model.findOne({ mlsId }).exec();
   }

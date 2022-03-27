@@ -10,14 +10,26 @@ const FavoriteSchema = new Schema({
 
 FavoriteSchema.path("mlsId").required(true, "MLS ID cannot be empty");
 
-FavoriteSchema.methods = {
+FavoriteSchema.methods = {};
+
+FavoriteSchema.statics = {
+  /**
+   * Get Favorite entity by mls id
+   * @param {Number} mlsId
+   * @returns
+   */
+  getByMlsId: async function (mlsId) {
+    const favorite = new Favorite(this);
+    return favorite.findOneByMlsId(mlsId);
+  },
+
   /**
    * Adds favorite for a property listing
    * @param {Number} mlsId
    */
-  addFavoriteByMlsId: function (mlsId) {
+  addFavoriteByMlsId: async function (mlsId) {
     const favorite = new Favorite(this);
-    favorite.addFavoriteByMlsId(mlsId);
+    return favorite.addFavoriteByMlsId(mlsId);
   },
 
   /**
@@ -26,14 +38,7 @@ FavoriteSchema.methods = {
    */
   removeFavoriteByMlsId: function (mlsId) {
     const favorite = new Favorite(this);
-    favorite.removeFavoriteByMlsId(mlsId);
-  },
-};
-
-FavoriteSchema.statics = {
-  getByMlsId: async function (mlsId) {
-    const favorite = new Favorite(this);
-    return favorite.findOneByMlsId(mlsId);
+    return favorite.removeFavoriteByMlsId(mlsId);
   },
 };
 

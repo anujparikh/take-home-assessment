@@ -10,4 +10,9 @@ module.exports = gql`
   type Query {
     favoriteById(mlsId: Int!): Favorite
   }
+
+  type Mutation {
+    markFavoriteById(mlsId: Int!): Favorite
+    unmarkFavoriteById(mlsId: Int!): Favorite
+  }
 `;

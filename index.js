@@ -17,8 +17,8 @@ const createServer = () => {
     typeDefs: [favoriteTypeDefs],
     resolvers: [favoriteResolvers],
     context: () => ({
-      favoriteModel: FavoriteModel,
-      userModel: UserModel,
+      FavoriteModel,
+      UserModel,
     }),
   });
 
