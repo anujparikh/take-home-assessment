@@ -1,9 +1,5 @@
-const fetchListing = async (
-  _,
-  { cityFilter },
-  { dataSources, FavoriteModel }
-) => {
-  const result = await dataSources.simplyRetsAPI.findListings(cityFilter);
+const properties = async (_, { city }, { dataSources, FavoriteModel }) => {
+  const result = await dataSources.simplyRetsAPI.findListings(city);
   const mlsIdsForFetchingFavoriteCounts = result.map(
     (listing) => listing.mlsId
   );
@@ -23,6 +19,6 @@ const fetchListing = async (
 
 module.exports = {
   Query: {
-    fetchListing,
+    properties,
   },
 };

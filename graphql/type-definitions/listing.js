@@ -2,7 +2,7 @@ const { gql } = require("apollo-server");
 
 module.exports = gql`
   type Query {
-    fetchListing(cityFilter: String): [Listing]
+    properties(city: String): [Listing]
   }
 
   type Listing {
