@@ -49,3 +49,8 @@ For this service, we are using in-memory mongodb which would be seeded by `yarn 
 - this project is using `dotenv` package to maintain environment variables for the service
 - to avoid pushing sensitive information, `.env` file has been ignored in .gitignore
 - before running the application, please create `.env` file at root of folder according to `.env.example` file
+
+### Tests
+- this project uses jest as test runner
+- to generate coverage use `yarn test --coverage`
+- currently 100% coverage 
