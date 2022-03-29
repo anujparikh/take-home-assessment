@@ -22,15 +22,6 @@ FavoriteSchema.statics = {
     const favorite = new Favorite(this);
     return favorite.findAllByMlsIds(mlsIds);
   },
-  /**
-   * Get Favorite entity by mls id
-   * @param {Number} mlsId
-   * @returns
-   */
-  getByMlsId: async function (mlsId) {
-    const favorite = new Favorite(this);
-    return favorite.findOneByMlsId(mlsId);
-  },
 
   /**
    * Adds favorite for a property listing

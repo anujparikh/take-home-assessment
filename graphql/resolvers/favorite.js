@@ -1,4 +1,4 @@
-const fetchFavoriteCountByMlsId = async (_, { mlsIds }, context) => {
+const fetchFavoriteCountByMlsIds = async (_, { mlsIds }, context) => {
   const { FavoriteModel } = context;
   const result = await FavoriteModel.findAllByMlsIds(mlsIds);
   return result;
@@ -18,7 +18,7 @@ const unmarkFavoriteById = async (_, { mlsId }, context) => {
 
 module.exports = {
   Query: {
-    fetchFavoriteCountByMlsId,
+    fetchFavoriteCountByMlsIds,
   },
   Mutation: {
     markFavoriteById,

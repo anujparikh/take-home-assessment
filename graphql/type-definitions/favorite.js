@@ -8,7 +8,7 @@ module.exports = gql`
   }
 
   type Query {
-    fetchFavoriteCountByMlsId(mlsId: [Int!]): Favorite
+    fetchFavoriteCountByMlsIds(mlsIds: [Int!]): [Favorite]
   }
 
   type Mutation {
