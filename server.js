@@ -7,6 +7,12 @@ const FavoriteModel = require("./models/favorite");
 const UserModel = require("./models/user");
 const SimplyRetsAPI = require("./datasource/simply-rets");
 
+/**
+ * Creates apollo server instance and also checks if the token received
+ * with req.headers is valid user token
+ * @param {*} options
+ * @returns
+ */
 module.exports = async (options = { port: process.env.PORT || 4000 }) => {
   const server = new ApolloServer({
     typeDefs: [favoriteTypeDefs, listingTypeDefs],

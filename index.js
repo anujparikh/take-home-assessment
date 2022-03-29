@@ -11,6 +11,9 @@ readdirSync(models)
   .filter((file) => ~file.search(/^[^.].*\.js$/))
   .forEach((file) => require(join(models, file)));
 
+// connects to mongodb through mongoose ORM
+// once the connection is done, it calls the function to create
+// instance of apollo server
 const connect = () => {
   mongoose.connection
     .on("error", console.error)
