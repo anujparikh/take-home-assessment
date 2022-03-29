@@ -16,7 +16,6 @@ const connect = () => {
     .on("error", console.error)
     .on("disconnected", connect)
     .once("open", createApolloServer);
-  mongoose.set("debug", process.env.ENVIRONMENT !== "production"); // TODO: remove this for production env
   return mongoose.connect(config.dbConfig.url, {
     keepAlive: true,
     useNewUrlParser: true,

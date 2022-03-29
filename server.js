@@ -1,4 +1,4 @@
-const { ApolloServer } = require("apollo-server");
+const { ApolloServer, AuthenticationError } = require("apollo-server");
 const favoriteTypeDefs = require("./graphql/type-definitions/favorite");
 const favoriteResolvers = require("./graphql/resolvers/favorite");
 const listingTypeDefs = require("./graphql/type-definitions/listing");
@@ -14,10 +14,18 @@ module.exports = async (options = { port: process.env.PORT || 4000 }) => {
     dataSources: () => ({
       simplyRetsAPI: new SimplyRetsAPI(),
     }),
-    context: () => ({
-      FavoriteModel,
-      UserModel,
-    }),
+    context: async ({ req }) => {
+      const requestToken = req.headers.authorization;
+      const user = await UserModel.getUserByToken(requestToken);
+      if (!user) {
+        throw new AuthenticationError("Invalid token passed");
+      }
+      return {
+        user,
+        FavoriteModel,
+        UserModel,
+      };
+    },
   });
 
   const serverInfo = await server.listen(options);

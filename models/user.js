@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Favorite = require("../service/favorite");
 
 const Schema = mongoose.Schema;
 
@@ -10,11 +9,9 @@ const UserSchema = new Schema({
 
 UserSchema.path("email").required(true, "Email cannot be empty");
 
-UserSchema.methods = {};
-
 UserSchema.statics = {
-  list: async function () {
-    return await this.find({}).exec();
+  getUserByToken: async function (token) {
+    return await this.findOne({ token }).exec();
   },
 };
 
